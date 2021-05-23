@@ -1,16 +1,16 @@
 ---
 layout: post
-title: Spring Uygulama Metriklerinin Prometheus ve Grafana ile Takip Edilmesi
+title: Spring Boot Uygulama Metriklerinin Prometheus ve Grafana ile Takip Edilmesi
 date: 2021-05-19 01:33:20 +0300
-description: Spring Uygulama Metriklerinin Prometheus ve Grafana ile Takip Edilmesi # Add post description (optional)
+description: Spring Boot Uygulama Metriklerinin Prometheus ve Grafana ile Takip Edilmesi # Add post description (optional)
 img: i-rest.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 categories: Java
-tags: [Spring, Spring Actuator, Prometheus, Grafana]
+tags: [Spring Boot, Spring Actuator, Prometheus, Grafana]
 ---
 
 
-Bu yazıda Spring uygulamamızda Spring Actuator ile birtakım metrikleri okuyup, bunları time series bir veritabanı olan Prometheus'a 
+Bu yazıda Spring Boot uygulamamızda Spring Actuator ile birtakım metrikleri okuyup, bunları time series bir veritabanı olan Prometheus'a 
 aktaracağız. Daha sonra bunları Grafana üzerinden nasıl izleyebileceğimizi göreceğiz.
 
 
@@ -222,7 +222,7 @@ Dashboard üzerine eklediğimiz bir panel ile Spring uygulamamız ait metrikleri
 
 ![img15](/images/b2/img15.png)
 
-Uygulamaya ait kodlara aşağıdaki [Github](https://github.com/mustafacalik-blog-apps/spring-app-monitor)  adresinden ulaşabilirsiniz.
+Uygulamaya ait kodlara [Github](https://github.com/mustafacalik-blog-apps/spring-app-monitor)  adresinden ulaşabilirsiniz.
 
 
 
