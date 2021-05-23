@@ -1,0 +1,10 @@
+# Site navigation links
+
+- title: Yazılar
+  url: /yazilar/
+- title: Kategoriler
+  url: /kategoriler/
+- title: Etiketler
+  url: /etiketler/
+- title: Arama
+  url: /arama/
