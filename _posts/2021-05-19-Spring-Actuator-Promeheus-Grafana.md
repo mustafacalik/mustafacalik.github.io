@@ -10,7 +10,7 @@ tags: [Spring Boot, Spring Actuator, Prometheus, Grafana]
 ---
 
 
-Bu yazıda Spring Boot uygulamamızda Spring Actuator ile birtakım metrikleri okuyup, bunları time series bir veritabanı olan Prometheus'a 
+Bu yazıda3 Spring Boot uygulamamızda Spring Actuator ile birtakım metrikleri okuyup, bunları time series bir veritabanı olan Prometheus'a 
 aktaracağız. Daha sonra bunları Grafana üzerinden nasıl izleyebileceğimizi göreceğiz.
 
 
