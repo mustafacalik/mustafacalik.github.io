@@ -34,7 +34,7 @@ google_fonts:
     weights: "400,400i,700,700i"
   - name: "Lora"
     weights: "400,400i,700,700i"
-google_analytics: "GTM-WM7LTNK"
+google_analytics: "G-HV24M0MBZW"
 disqus:
   shortname: "mustafacalik"
 twitter:
