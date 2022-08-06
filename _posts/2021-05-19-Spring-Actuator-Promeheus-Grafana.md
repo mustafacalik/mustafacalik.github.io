@@ -222,7 +222,7 @@ Dashboard üzerine eklediğimiz bir panel ile Spring uygulamamız ait metrikleri
 
 ![img15](/images/b2/img15.png)
 
-Uygulamaya ait kodlara [Github](https://github.com/mustafacalik-blog-apps/spring-app-monitor)  adresinden ulaşabilirsiniz.
+Uygulamaya ait kodlara [Github](https://github.com/mustafacalik/blog-apps/tree/main/spring-app-monitor-master)  adresinden ulaşabilirsiniz.
 
 
 
