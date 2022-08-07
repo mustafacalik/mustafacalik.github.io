@@ -35,6 +35,8 @@ Java'da uygulama için ayrılan Stack memory alanı, Heap memory'e kıyasla çok
 #### Heap Memory
 Runtime'da dinamik olarak Java objeleri ve JRE classları için memory'de tutulan alandır.
 
+#### Özellikleri
+
 * Objeler burada yer alırken, referansları ise Stack memory'de bulunur.
 * Memory'de yer kalmadığında java.lang.OutOfMemoryError hatası fırlatılır.
 * Stack Memory'e kısyasla çok daha yavaştır.
