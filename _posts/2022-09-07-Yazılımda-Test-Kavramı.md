@@ -45,10 +45,9 @@ Kısaca kodu yazmadan testini yazmaktır.
 * Entegrasyon testleri güvenirlik bakımından daha doğru sonuçlar verir.
 * Unit test yazılımcı perspektifinden bakar, entegrasyon testi ise kullanıcı perspektifinden bakılarak yazılır.
 * Unit test white box testing olarak geçerken, entegrasyon testi black box testing olarak tanımlanır.
-.2022
-08.03.2022
-Gelen Havalemız aşamada testler testiklenmeli ve çalışmalıdır. Bu sayede kodumuz testten geçmeden main branch'a merge edilmemiş olur.
 
+### Best Practice'ler nelerdir ?
+
+* Kodumuz Main branch'a merge olmadan push yaptığımız aşamada testler testiklenmeli ve çalışmalıdır. Bu sayede kodumuz testten geçmeden main branch'a merge edilmemiş olur.
 * CI/CD pipelina'larında otomatik olarak testlerin koşulması.
-
 * Production ortamında Periyoduik olarak testlerin koşması ve bunların monitör edilmesi.
