@@ -34,6 +34,15 @@ Uygulamamızı bir bütün olarak ele alırız ve tüm modülleriyle beraber ger
 ### Regresyon Testi nedir ?
 Uygulamamızda bir yazılım değişikliği yaptğımızda, bu değişikliğin daha önceden yapılmış ve çalışan olan bir akışı bozup / bozmadığını anlamak için regresyon testleri koşulur. Diğer bir ifadeyle uygulamanın değişmeyen kısımlarının yeniden test edilmesi anlamına gelir.
 
+### Mutasyon Testi nedir ?
+
+Testlerimizin yeterliliğini ölçmemize imkan verir. Programdaki tüm hataları tespit etmemizi sağlarlar. Hata tabanlı test stratejisi olarak da adlandırılır.
+Mutasyon testinde kaynak kodda belirli ifadeler değiştirilerek ilgili yerlerin mutasyano uğramış farklı varyasyonları elde edilir.
+Amacımız yeni oluşan mutant kodların başarısız olmasını sağlamaktır. Yani orjinal kod ile test ettiğimizde aldığımız test sonucu ile mutant versiyonlar ile test ettiğimizde aldığımız sonuç birbirinden fakrlı olmalı. Kodda değişiklik yapmamıza rağmen test sonucumuz değişmiyorsa bu bizim testimizin yeterince kapsamlı ve etkili olmadığını gösterir. Farklı sonuçlar alındığında mutantlar öldürülürken aynı çıktı alındığında Mutant canlı tutulur. Bu gibi durumlarda tüm mutantları öldüren daha etkli test case'ler oluşturmalıyız.
+
+Mutant programları unit test'ler gibi manuel oluşturmuyoruz. [pitest](https://pitest.org/quickstart/maven/) gibi plugin'ler ile bunu sağlayabiliyoruz.
+
+Mutation coverage report ile gerçek test coverage oranını da görmüş oluruz.
 
 ### Test Driven Development
 Kısaca kodu yazmadan testini yazmaktır.
