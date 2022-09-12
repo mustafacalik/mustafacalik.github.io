@@ -51,3 +51,91 @@ Kısaca kodu yazmadan testini yazmaktır.
 * Kodumuz Main branch'a merge olmadan push yaptığımız aşamada testler testiklenmeli ve çalışmalıdır. Bu sayede kodumuz testten geçmeden main branch'a merge edilmemiş olur.
 * CI/CD pipelina'larında otomatik olarak testlerin koşulması.
 * Production ortamında Periyoduik olarak testlerin koşması ve bunların monitör edilmesi.
+
+
+
+### Unit Test Yazarken Nelere Dikkat Emeliyiz ?
+
+
+### Varolan kodlarımız ile aynı paket yapısında test classlarımızı oluşturmalıyız.
+
+--> resim
+
+#### İsimlendirmeye dikkat etmeliyiz
+
+Unit testlerimiz için testin amacını açık bir şekilde yansıtan, okunabilir isimler tercih etmeliyiz. Testlerimizin okuyan diğer kişiler tarafından da kolay bir şekilde ne yapıldığı anlaşılıyor olmalı. Anlaşılabilir unit test isimleri kodun daha sonra geliştirilmesi esnasında da bizim ve diğer kişiler için kolaylık sağlayacaktır.
+
+Bazı İsimlendirme Örnekleri:
+
+* MethodAdı_TestEdilenDurum_BeklenenDavranış
+  
+  isOddNumber_NumberIsOdd_True
+
+* MethodAdı_BeklenenDavranış_TestEdilenDurum
+  
+  isOddNumber_True_NumberIsOdd
+
+* test[TestEdilenDurum + BeklenenDavranış]
+  
+  testTrueIfNumberIsOdd
+  
+* TestEdilenDurum + BeklenenDavranış
+  
+  trueIfNumberIsOdd
+  
+* Should_BeklenenDavranış_When_TestEdilenDurum
+  
+  Should_True_When_NumberIsOdd
+  
+* When_TestEdilenDurum_Expect_BeklenenDavranış
+  
+  When_NumberIdOdd_Expect_True
+  
+* Given_ÖnKoşul_When_TestEdilenDurum_Then_BeklenenDavranış
+  
+  Given_UserAuthenticated_When_NumberIsOdd_Then_True
+
+
+
+
+#### Kod yapısına dikkat etmeliyiz
+
+Unit testlerimizde best practice olarak test kod blocklarımızı Given/When/then yaklaşımı ile yazarsak bu sayede daha okunabilir unit testlerimiz olur.
+
+Given -> Input olarak kullanacapımız data veya oluşturacağımız mock'ları buraya yazarız.
+
+When -> Test etmek istediğimiz metodu çağırdığımız yerdir.
+
+Then -> Assertion'ları yaptığımız yerdir. Beklenen sonucun gelip gelmediğini veya davranış olarak istediğimi gibi çalışığ çalışmadığını kontrol ettiğimiz yerdir.
+
+
+---> resim
+
+#### Testleri development esnasında yazmalıyız. Ne kadar erken yazarsak kodumuz o kadar clean olur ve bugları önceden yakalamış oluruz. 
+
+
+### Unit teslerimiz CI/CD pipelarına bağlı ve otomatik olarak koşulabilir olmalı. 
+
+#### Testlerimiz deterministik olmalı yani test kodumuz değişmedikçe hep aynı tutarlı davranışı göstermeli. 
+
+#### Her bir unit testin yalnız bir durumu test etmesi önerilir. Multiple assertlerden kaçınmalı. Mümkünse bir assertion olmalı, farklı parametreler için parametrik testler kullanılabilir. Bu sayede testimiz fail olduğunda hatanın kaynağı ile ilgili daha açık bir çıkarım elde etmiş oluruz.
+
+#### Unit testlerimizde conditional logic'ler (if, while, switch, for) kullanmamalıyız. Testlerimiz içinde çok fazla logic bulunmamamlı mümkün mertebe kısa ve açık olmalı.
+
+#### Testlerimiz birbirine bağımlı olmamalı. Eş zamanlı olarak birbirinden bağımsız çalıştırılabilmeliler.
+
+#### Birçok kez kullanılan değerleri bir değişkene atamak okunabilirliği düşürmektedir. Okuyan kişi değişkenin nerelerde geçtiğini anlamak durumunda kalabiliyor. Bunun yerine değerleri direkt olarak yazmalıyız. 
+
+#### Yazdığımız unit testlerde maxiumum test coverage'i amaçlamalıyız.
+
+#### Testlerimizde birçok yerde kullandığımız objelerimiz var ise veya aynı şeyleri birçok kez mock^luyorsak, helper fonksyionlar kullanabiliriz. Bu sayede okunabilirliği artırıp, test kodumuzun sürdürülebilirliğini artırmış oluruz.
+
+#### assertionlarda actual ve expexcted takısı ile değişkenlerimizi tanımlarsak okunabilirliği artırmış oluruz ve değişkenlerin amacını da açık olarak göstermiş oluruz. 
+
+#### Test sınıflarımızda kompleks inheritance hiyerarşileri kullanmamalıyız. Bu kullanım çok esnek olmayacaktır ve okuyucunun farklı classlara gözatmasına sebebiyet verecektir. Bunun yerine ortak kullanılacak tanımları @BeforeAll ile tanımlayabiliriz. 
+
+
+#### Okunabilir test name'ler kullanabiliriz. @DisplayName anotasyonu junit 5 ile kullanılabilir.
+
+
+#### Testimiz magic number ve magic stringlerden arındırılmış olmalı.
