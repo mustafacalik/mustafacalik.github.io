@@ -116,8 +116,34 @@ Unit testlerimizde best practice olarak test kod blocklarımızı Given/When/the
 
 **Then** -> Assertion'ları yaptığımız yerdir. Beklenen sonucun gelip gelmediğini veya davranış olarak istediğimi gibi çalışıp çalışmadığını kontrol ettiğimiz yerdir.
 
+```java
+    public String createUser(UserDto userDto) throws UserException {
+        if(userRepository.findByEmail(userDto.email).isPresent()){
+            throw new UserException("User was already created");
+        }
+        User user = userMapper.fromDto(userDto);
+        userRepository.persist(user);
+        return user.id.toString();
+    }
 
----> resim
+    @Test
+    void Should_CreateUser_When_UserDtoAsParameter() throws UserException {
+        //Given
+        UserDto userDto = createUserDto("name","surname","mymail@mail.com");
+        User expectedUser = createUserEntity(userDto);
+        ObjectId expectedUserId = new ObjectId();
+        Mockito.when(userRepository.findByEmail(userDto.email)).thenReturn(Optional.empty());
+        Mockito.when(userMapper.fromDto(userDto)).thenReturn(expectedUser);
+        Mockito.doAnswer(invocationOnMock -> expectedUser.id = expectedUserId).when(userRepository).persist(expectedUser);
+
+        //When
+        String actualUserId = userService.createUser(userDto);
+
+        //Then
+        assertEquals(expectedUserId.toString(), actualUserId);
+    }
+```
+
 
 #### Testleri development esnasında yazmalıyız
 Ne kadar erken yazarsak kodumuz o kadar clean olur ve bugları önceden yakalamış oluruz. 
@@ -139,15 +165,52 @@ Testlerimiz birbirine bağımlı olmamalı. Eş zamanlı olarak birbirinden bağ
 
 
 #### Maxium coverage hedeflenmeli
-Yazdığımız unit testlerde maxiumum test coverage'i amaçlamalıyız.
+Yazdığımız unit testlerde maxiumum test coverage'i amaçlamalıyız. jacoco library'si ile testlerimizin coverage oranlarını görüntülüyebiliriz.
 
+![img1](/images/test/jacoco.png)
+
+
+https://quarkus.io/guides/tests-with-coverage
 
 #### Okunabilirliği artırmalıyız
 Testlerimizde birçok yerde kullandığımız objelerimiz var ise veya aynı şeyleri birçok kez mock'luyorsak, helper fonksyionlar kullanabiliriz. Bu sayede okunabilirliği artırıp, test kodumuzun sürdürülebilirliğini artırmış oluruz.
 
+
+```java
+
+@Test
+void Should_CreateUser_When_UserDtoAsParameter() throws UserException {
+    //Given
+    UserDto userDto = createUserDto("name","surname","mymail@mail.com");
+    User expectedUser = createUserEntity(userDto);
+    ...
+}
+ 
+private UserDto createUserDto(String firstName, String lastName, String email){
+    UserDto userDto = new UserDto();
+    userDto.firstName = firstName;
+    userDto.lastName = lastName;
+    userDto.email = email;
+    return userDto;
+}
+ 
+private User createUserEntity(UserDto userDto){
+    User user = new User();
+    user.firstName = userDto.firstName;
+    user.lastName = userDto.lastName;
+    user.email = userDto.email;
+    return user;
+}
+
+
+```
+
+
 Birçok kez kullanılan değerleri bir değişkene atamak okunabilirliği düşürmektedir. Okuyan kişi değişkenin nerelerde geçtiğini anlamak durumunda kalabiliyor. Bunun yerine değerleri direkt olarak yazmalıyız. 
 
-assertionlarda actual ve expexcted takısı ile değişkenlerimizi tanımlarsak okunabilirliği artırmış oluruz ve değişkenlerin amacını da açık olarak göstermiş oluruz. 
+Assertionlarda actual ve expexcted takısı ile değişkenlerimizi tanımlarsak okunabilirliği artırmış oluruz ve değişkenlerin amacını da açık olarak göstermiş oluruz. 
+
+> assertEquals(expectedUserId.toString(), actualUserId);
 
 Okunabilir test name'ler kullanabiliriz. @DisplayName anotasyonu junit 5 ile kullanılabilir.
 
