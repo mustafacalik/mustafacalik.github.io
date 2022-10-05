@@ -66,6 +66,9 @@ Url'lerimizi backend'e gelmeden istediğimiz şekilde yeniden belirlememize imka
 * https://dzone.com/articles/benefits-reverse-proxy
 
 
+* https://blog.devgenius.io/microservices-design-api-gateway-pattern-980e8d02bdd5
+
+
 
 
 
