@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Apigateway
-date: 2022-08-02 01:33:20 +0300
+date: 2022-09-22 01:33:20 +0300
 description: Apigateway
 img: i-rest.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
@@ -9,8 +9,6 @@ categories: Java
 tags: [Apigateway]
 ---
 
-
-### Apigateway Nedir ?
 
 Dışarıdan sisteme tek noktadan giriş yeridir. Diğer bir deyişle api yönetim sunucusu olarak da düşünebiliriz. Client'lar için mikroservislere giriş noktasıdır. User'in request'ini aldıktan sonra bunu bir veya daha fazla backend servisine yönlendirip, response'da döneceği datayı hazırlayıp user'a teslim eder. Reverse proxy gibi davranırlar. Design Pattern'lardan Facade pattern gibi de düşünülebilir.
 
